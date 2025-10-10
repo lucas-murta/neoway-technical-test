@@ -1,0 +1,127 @@
+$spacing-unit: 8px;
+
+$spacing-1: $spacing-unit * 1;
+$spacing-2: $spacing-unit * 2;
+$spacing-3: $spacing-unit * 3;
+$spacing-4: $spacing-unit * 4;
+$spacing-5: $spacing-unit * 5;
+$spacing-6: $spacing-unit * 6;
+$spacing-7: $spacing-unit * 7;
+$spacing-8: $spacing-unit * 8;
+$spacing-9: $spacing-unit * 9;
+$spacing-10: $spacing-unit * 10;
+$spacing-11: $spacing-unit * 11;
+$spacing-12: $spacing-unit * 12;
+
+$spacings: (
+  '1': $spacing-1,
+  '2': $spacing-2,
+  '3': $spacing-3,
+  '4': $spacing-4,
+  '5': $spacing-5,
+  '6': $spacing-6,
+  '7': $spacing-7,
+  '8': $spacing-8,
+  '9': $spacing-9,
+  '10': $spacing-10,
+  '11': $spacing-11,
+  '12': $spacing-12,
+);
+
+@mixin generate-padding-classes($prefix: '') {
+  @each $key, $value in $spacings {
+    .#{$prefix}p-#{$key} {
+      padding: $value;
+    }
+
+    .#{$prefix}pt-#{$key} {
+      padding-top: $value;
+    }
+
+    .#{$prefix}pr-#{$key} {
+      padding-right: $value;
+    }
+
+    .#{$prefix}pb-#{$key} {
+      padding-bottom: $value;
+    }
+
+    .#{$prefix}pl-#{$key} {
+      padding-left: $value;
+    }
+
+    .#{$prefix}px-#{$key} {
+      padding-left: $value;
+      padding-right: $value;
+    }
+
+    .#{$prefix}py-#{$key} {
+      padding-top: $value;
+      padding-bottom: $value;
+    }
+  }
+}
+
+@mixin generate-margin-classes($prefix: '') {
+  @each $key, $value in $spacings {
+    .#{$prefix}m-#{$key} {
+      margin: $value;
+    }
+
+    .#{$prefix}mt-#{$key} {
+      margin-top: $value;
+    }
+
+    .#{$prefix}mr-#{$key} {
+      margin-right: $value;
+    }
+
+    .#{$prefix}mb-#{$key} {
+      margin-bottom: $value;
+    }
+
+    .#{$prefix}ml-#{$key} {
+      margin-left: $value;
+    }
+
+    .#{$prefix}mx-#{$key} {
+      margin-left: $value;
+      margin-right: $value;
+    }
+
+    .#{$prefix}my-#{$key} {
+      margin-top: $value;
+      margin-bottom: $value;
+    }
+  }
+}
+
+@mixin generate-spacing-classes($prefix: '') {
+  @include generate-padding-classes($prefix);
+  @include generate-margin-classes($prefix);
+}
+
+@mixin generate-responsive-spacing-classes() {
+  @include generate-spacing-classes();
+
+  @media (max-width: 640px) {
+    @include generate-spacing-classes('sm-');
+  }
+
+  @media (max-width: 768px) {
+    @include generate-spacing-classes('md-');
+  }
+
+  @media (max-width: 1024px) {
+    @include generate-spacing-classes('lg-');
+  }
+}
+
+@function spacing($key) {
+  @if map-has-key($spacings, $key) {
+    @return map-get($spacings, $key);
+  }
+
+  @error "Espaçamento '#{$key}' não encontrado no mapa $spacings.";
+  @return null;
+}
