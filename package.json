@@ -12,7 +12,10 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "test": "vitest"
+    "test": "vitest",
+    "test:ci": "vitest run",
+    "typecheck": "vue-tsc --noEmit",
+    "prepare": "husky"
   },
   "dependencies": {
     "pinia": "^3.0.3",
@@ -30,11 +33,13 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-vue": "^10.5.0",
+    "husky": "^9.1.7",
     "prettier": "^3.6.2",
     "sass": "^1.93.2",
     "typescript": "^5.9.3",
     "vite": "^7.1.7",
     "vite-plugin-vue-devtools": "^8.0.2",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "vue-tsc": "^3.1.1"
   }
 }
