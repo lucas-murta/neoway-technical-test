@@ -47,7 +47,7 @@ const styleVars = computed<Record<string, string>>(() => {
   return vars
 })
 
-function mapSizeOrSpacing(value: SpacingOrAuto | SizeKeyword): string {
+const mapSizeOrSpacing = (value: SpacingOrAuto | SizeKeyword): string => {
   if (value === 'full') return '100%'
   if (value === 'fit-content' || value === 'max-content' || value === 'min-content') return value
   if (value === 'auto') return 'auto'
@@ -56,16 +56,16 @@ function mapSizeOrSpacing(value: SpacingOrAuto | SizeKeyword): string {
   return v
 }
 
-function parseShorthand(input: string): string {
+const parseShorthand = (input: string): string => {
   const parts = input.trim().split(/\s+/)
   return parts.map((p) => (isSpacingToken(p) ? spacingPx(p as TokenSpacing) : p)).join(' ')
 }
 
-function isSpacingToken(v: string): boolean {
+const isSpacingToken = (v: string): boolean => {
   return ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'].includes(v)
 }
 
-function spacingPx(key: TokenSpacing): string {
+const spacingPx = (key: TokenSpacing): string => {
   const unit = 8
   const n = Number(key)
   return `${unit * n}px`
