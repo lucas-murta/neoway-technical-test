@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { inject, onUnmounted } from 'vue'
-import Typography from './components/Typography.vue'
+import Typography from './lib/base-components/Typography/Typography.vue'
 const stop = inject<() => void>('stopThemeListener')
 onUnmounted(() => {
   if (typeof stop === 'function') stop()

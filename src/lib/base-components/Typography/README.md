@@ -1,0 +1,1 @@
+Typography base component folder within lib structure.
