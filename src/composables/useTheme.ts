@@ -1,4 +1,5 @@
 export function initTheme(): void {
+  if (typeof window === 'undefined' || typeof document === 'undefined') return
   const media = window.matchMedia('(prefers-color-scheme: dark)')
   const saved = localStorage.getItem('theme')
   const html = document.documentElement
@@ -6,6 +7,7 @@ export function initTheme(): void {
 }
 
 export function startThemeListener(): () => void {
+  if (typeof window === 'undefined' || typeof document === 'undefined') return () => {}
   const media = window.matchMedia('(prefers-color-scheme: dark)')
   const html = document.documentElement
   const handler = (e: MediaQueryListEvent) => {
