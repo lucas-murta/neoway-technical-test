@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { GridProps, SpacingOrAuto, SizeKeyword } from '@/types/grid'
-import type { TokenSpacing } from '@/types/design-tokens'
+import type { GridProps } from '@/types/spacing'
+import { mapSizeOrSpacing, parseShorthand } from '@/utils/spacing-hooks'
 
 const props = withDefaults(defineProps<GridProps>(), {
   cols: 1,
@@ -46,30 +46,6 @@ const styleVars = computed<Record<string, string>>(() => {
 
   return vars
 })
-
-const mapSizeOrSpacing = (value: SpacingOrAuto | SizeKeyword): string => {
-  if (value === 'full') return '100%'
-  if (value === 'fit-content' || value === 'max-content' || value === 'min-content') return value
-  if (value === 'auto') return 'auto'
-  const v = String(value)
-  if (isSpacingToken(v)) return spacingPx(v as TokenSpacing)
-  return v
-}
-
-const parseShorthand = (input: string): string => {
-  const parts = input.trim().split(/\s+/)
-  return parts.map((p) => (isSpacingToken(p) ? spacingPx(p as TokenSpacing) : p)).join(' ')
-}
-
-const isSpacingToken = (v: string): boolean => {
-  return ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'].includes(v)
-}
-
-const spacingPx = (key: TokenSpacing): string => {
-  const unit = 8
-  const n = Number(key)
-  return `${unit * n}px`
-}
 </script>
 
 <template>
