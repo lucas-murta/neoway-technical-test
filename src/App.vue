@@ -3,6 +3,7 @@ import { inject, onUnmounted } from 'vue'
 import Typography from './lib/base-components/Typography/Typography.vue'
 import Icon from './lib/base-components/Icon/Icon.vue'
 import Grid from './lib/base-components/Grid/Grid.vue'
+import Paper from './lib/base-components/Paper/Paper.vue'
 const stop = inject<() => void>('stopThemeListener')
 onUnmounted(() => {
   if (typeof stop === 'function') stop()
@@ -48,11 +49,7 @@ onUnmounted(() => {
         Grid Component
       </Typography>
       <Grid :cols="2" :md-cols="3" :lg-cols="4" gap="2" padding="16px">
-        <div
-          v-for="n in 8"
-          :key="n"
-          style="background-color: #fff; border: 1px solid #ddd; padding: 8px"
-        >
+        <Paper v-for="n in 8" :key="n" background="surface-0" border="border-1" padding="8px">
           <Typography
             tag="p"
             variant="body-small"
@@ -62,7 +59,7 @@ onUnmounted(() => {
           >
             Item {{ n }}
           </Typography>
-        </div>
+        </Paper>
       </Grid>
     </div>
   </main>
