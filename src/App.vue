@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { inject, onUnmounted } from 'vue'
 import Typography from './lib/base-components/Typography/Typography.vue'
-
+import Icon from './lib/base-components/Icon/Icon.vue'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+library.add(faUser)
 const stop = inject<() => void>('stopThemeListener')
 onUnmounted(() => {
   if (typeof stop === 'function') stop()
@@ -23,6 +26,7 @@ onUnmounted(() => {
       >
         Icon Example:
       </Typography>
+      <Icon :icon="['fas', 'user']" size="lg" color="content-default" />
     </div>
     <Typography
       tag="p"
