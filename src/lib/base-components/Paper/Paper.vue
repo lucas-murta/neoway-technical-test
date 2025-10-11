@@ -1,30 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { TokenSurfaceColor, TokenBorderColor, TokenElevation } from '@/types/design-tokens'
-import type { ShorthandValue, SizeKeyword, SpacingOrAuto } from '@/types/spacing'
+import type { PaperProps } from './paper.interface'
 import { mapSizeOrSpacing, parseShorthand } from '@/utils/spacing-hooks'
 
-interface Props {
-  background?: TokenSurfaceColor
-  border?: 'none' | TokenBorderColor
-  borderRadius?: 'none' | '1' | '2'
-  elevation?: TokenElevation
-
-  width?: SpacingOrAuto | SizeKeyword
-  height?: SpacingOrAuto | SizeKeyword
-
-  padding?: ShorthandValue
-  smPadding?: ShorthandValue
-  mdPadding?: ShorthandValue
-  lgPadding?: ShorthandValue
-
-  margin?: ShorthandValue
-  smMargin?: ShorthandValue
-  mdMargin?: ShorthandValue
-  lgMargin?: ShorthandValue
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<PaperProps>(), {
   border: 'none',
   borderRadius: '1',
 })
