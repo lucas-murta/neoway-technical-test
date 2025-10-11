@@ -56,40 +56,8 @@ const styleVars = computed<Record<string, string>>(() => {
 
 <style lang="scss" scoped>
 @use '@/styles/tokens' as *;
-
-@mixin gap-classes($name, $property) {
-  @for $i from 1 through 12 {
-    &--#{$name}-#{$i} {
-      #{$property}: spacing('#{$i}');
-    }
-  }
-}
-
-@mixin cols-classes($prefix) {
-  @for $i from 1 through 12 {
-    &--#{$prefix}-#{$i} {
-      grid-template-columns: repeat(#{$i}, minmax(0, 1fr));
-    }
-  }
-}
-
-$grid-breakpoints: (
-  sm: 640px,
-  md: 768px,
-  lg: 1024px,
-);
-
-@mixin responsive-cols() {
-  @each $name, $size in $grid-breakpoints {
-    @media (max-width: $size) {
-      @for $i from 1 through 12 {
-        &--#{$name}-cols-#{$i} {
-          grid-template-columns: repeat(#{$i}, minmax(0, 1fr));
-        }
-      }
-    }
-  }
-}
+@use '@/styles/mixins/spacings' as spacings;
+@use '@/styles/mixins/flex' as flex;
 
 .grid {
   display: grid;
@@ -99,79 +67,33 @@ $grid-breakpoints: (
   padding: var(--grid-padding, initial);
   margin: var(--grid-margin, initial);
 
-  @media (max-width: 640px) {
+  @media (min-width: 640px) {
     padding: var(--grid-sm-padding, var(--grid-padding, initial));
     margin: var(--grid-sm-margin, var(--grid-margin, initial));
   }
 
-  @media (max-width: 768px) {
+  @media (min-width: 768px) {
     padding: var(--grid-md-padding, var(--grid-padding, initial));
     margin: var(--grid-md-margin, var(--grid-margin, initial));
   }
 
-  @media (max-width: 1024px) {
+  @media (min-width: 1024px) {
     padding: var(--grid-lg-padding, var(--grid-padding, initial));
     margin: var(--grid-lg-margin, var(--grid-margin, initial));
   }
 
-  &--dir-row {
-    grid-auto-flow: column;
-  }
-  &--dir-row-reverse {
-    grid-auto-flow: column;
-    direction: rtl;
-  }
-  &--dir-column {
-    grid-auto-flow: row;
-  }
-  &--dir-column-reverse {
-    grid-auto-flow: row;
-    direction: rtl;
-  }
+  @include flex.direction-classes();
+  @include flex.align-items-classes();
+  @include flex.justify-content-classes();
 
-  &--ai-start {
-    align-items: start;
-  }
-  &--ai-center {
-    align-items: center;
-  }
-  &--ai-end {
-    align-items: end;
-  }
-  &--ai-stretch {
-    align-items: stretch;
-  }
-  &--ai-baseline {
-    align-items: baseline;
-  }
+  @include spacings.gap-classes('gap', gap);
 
-  &--jc-start {
-    justify-content: start;
-  }
-  &--jc-center {
-    justify-content: center;
-  }
-  &--jc-end {
-    justify-content: end;
-  }
-  &--jc-space-between {
-    justify-content: space-between;
-  }
-  &--jc-space-around {
-    justify-content: space-around;
-  }
-  &--jc-space-evenly {
-    justify-content: space-evenly;
-  }
+  @include spacings.gap-classes('gapx', column-gap);
 
-  @include gap-classes('gap', gap);
+  @include spacings.gap-classes('gapy', row-gap);
 
-  @include gap-classes('gapx', column-gap);
+  @include spacings.cols-classes('cols');
 
-  @include gap-classes('gapy', row-gap);
-
-  @include cols-classes('cols');
-
-  @include responsive-cols();
+  @include spacings.responsive-cols();
 }
 </style>
