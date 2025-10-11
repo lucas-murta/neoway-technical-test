@@ -1,0 +1,22 @@
+@use '@/styles/tokens' as *;
+
+@mixin border-styles() {
+  &--border-border-1 {
+    border: 1px solid $color-border-1;
+  }
+  &--border-border-2 {
+    border: 1px solid $color-border-2;
+  }
+  &--border-border-3 {
+    border: 1px solid $color-border-3;
+  }
+}
+
+@mixin radius-sizes() {
+  &--radius-1 {
+    border-radius: $spacing-1;
+  }
+  &--radius-2 {
+    border-radius: $spacing-2;
+  }
+}
