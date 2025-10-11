@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { GridProps } from '@/types/spacing'
+import type { GridProps } from './grid.interface'
 import { mapSizeOrSpacing, parseShorthand } from '@/utils/spacing-hooks'
 
 const props = withDefaults(defineProps<GridProps>(), {

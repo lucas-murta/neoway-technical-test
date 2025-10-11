@@ -1,5 +1,5 @@
 import type { TokenSurfaceColor, TokenBorderColor, TokenElevation } from '@/types/design-tokens'
-import type { ShorthandValue, SizeKeyword, SpacingOrAuto } from '@/types/spacing'
+import type { SizeKeyword, SpacingOrAuto } from '@/types/spacing'
 
 export interface PaperProps {
   background?: TokenSurfaceColor
@@ -10,13 +10,13 @@ export interface PaperProps {
   width?: SpacingOrAuto | SizeKeyword
   height?: SpacingOrAuto | SizeKeyword
 
-  padding?: ShorthandValue
-  smPadding?: ShorthandValue
-  mdPadding?: ShorthandValue
-  lgPadding?: ShorthandValue
+  padding?: string
+  smPadding?: string
+  mdPadding?: string
+  lgPadding?: string
 
-  margin?: ShorthandValue
-  smMargin?: ShorthandValue
-  mdMargin?: ShorthandValue
-  lgMargin?: ShorthandValue
+  margin?: string
+  smMargin?: string
+  mdMargin?: string
+  lgMargin?: string
 }
