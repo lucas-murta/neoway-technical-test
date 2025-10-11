@@ -8,8 +8,8 @@ export interface ButtonProps {
   color?: ButtonColor
   className?: string
   disabled?: boolean
-  IconButton?: boolean
-  IconLeft?: string
-  IconRight?: string
+  iconButton?: boolean
+  iconLeft?: string
+  iconRight?: string
   onClick?: (_event: MouseEvent) => void
 }

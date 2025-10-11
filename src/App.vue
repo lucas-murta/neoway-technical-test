@@ -29,22 +29,20 @@ onUnmounted(() => {
       <Icon :icon="['fas', 'user']" size="lg" color="content-default" />
     </div>
     <div style="margin-top: 16px; display: flex; gap: 8px; align-items: center">
+      <Button variant="solid" size="small" color="primary" icon-button icon-left="user"></Button>
       <Button variant="solid" size="small" color="primary">Solid Small</Button>
       <Button variant="solid" size="medium" color="secondary">Solid Medium</Button>
       <Button variant="solid" size="large" color="positive">Solid Large</Button>
       <Button variant="outline" size="medium" color="negative">Outline</Button>
       <Button variant="text" size="medium" color="primary">Text</Button>
-      <Button variant="solid" size="medium" color="primary" IconButton IconLeft="user" />
-      <Button variant="solid" size="medium" color="secondary" IconLeft="user">With Left Icon</Button>
-      <Button variant="solid" size="medium" color="secondary" IconRight="user">With Right Icon</Button>
-      <Button
-        variant="solid"
-        size="medium"
-        color="secondary"
-        :onClick="(e) => console.log('Clicked!', e)"
+      <Button variant="solid" size="medium" color="primary" icon-button icon-left="user"></Button>
+      <Button variant="solid" size="medium" color="secondary" icon-left="user"
+        >With Left Icon</Button
       >
-        Click Me
-      </Button>
+      <Button variant="solid" size="medium" color="secondary" icon-right="user"
+        >With Right Icon</Button
+      >
+      <Button variant="solid" size="medium" color="secondary"> Click Me </Button>
       <Button variant="solid" size="medium" color="secondary" disabled>Disabled</Button>
     </div>
     <Typography
@@ -84,5 +82,3 @@ onUnmounted(() => {
     </div>
   </main>
 </template>
-
-<style lang="scss" scoped></style>

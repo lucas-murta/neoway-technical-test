@@ -15,7 +15,7 @@ const classes = computed(() => {
   c.push(`button--variant-${props.variant}`)
   c.push(`button--size-${props.size}`)
   c.push(`button--color-${props.color}`)
-  if (props.IconButton) c.push('button--icon-only')
+  if (props.iconButton) c.push('button--icon-only')
   if (props.disabled) c.push('is-disabled')
   if (props.className) c.push(props.className)
   return c.join(' ')
@@ -36,9 +36,9 @@ const labelSize = computed(() => {
 
 <template>
   <button type="button" :class="classes" :disabled="disabled" @click="onClick && onClick($event)">
-    <Icon v-if="IconLeft" :icon="['fas', IconLeft]" :size="iconSize" class="button__icon left" />
+    <Icon v-if="iconLeft" :icon="['fas', iconLeft]" :size="iconSize" class="button__icon left" />
     <Typography
-      v-if="!IconButton"
+      v-if="!iconButton"
       tag="span"
       variant="body-medium"
       font-family="body"
@@ -48,7 +48,7 @@ const labelSize = computed(() => {
     >
       <slot />
     </Typography>
-    <Icon v-if="IconRight" :icon="['fas', IconRight]" :size="iconSize" class="button__icon right" />
+    <Icon v-if="iconRight" :icon="['fas', iconRight]" :size="iconSize" class="button__icon right" />
   </button>
 </template>
 
@@ -66,7 +66,7 @@ const labelSize = computed(() => {
   cursor: pointer;
   text-decoration: none;
   outline: none;
-  border-radius: spacing('2');
+  border-radius: spacing('1');
 
   &--size-small {
     height: spacing('4');
@@ -92,7 +92,6 @@ const labelSize = computed(() => {
   &--icon-only {
     padding-left: 0;
     padding-right: 0;
-    border-radius: $spacing-8;
 
     &.button--size-small {
       width: spacing('4');
