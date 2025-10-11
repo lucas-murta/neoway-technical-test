@@ -4,6 +4,7 @@ import Typography from './lib/base-components/Typography/Typography.vue'
 import Icon from './lib/base-components/Icon/Icon.vue'
 import Grid from './lib/base-components/Grid/Grid.vue'
 import Paper from './lib/base-components/Paper/Paper.vue'
+import Button from './lib/base-components/Button/Button.vue'
 const stop = inject<() => void>('stopThemeListener')
 onUnmounted(() => {
   if (typeof stop === 'function') stop()
@@ -26,6 +27,23 @@ onUnmounted(() => {
         Icon Example:
       </Typography>
       <Icon :icon="['fas', 'user']" size="lg" color="content-default" />
+    </div>
+    <div style="margin-top: 16px; display: flex; gap: 8px; align-items: center">
+      <Button variant="solid" size="small" color="primary" icon-button icon-left="user"></Button>
+      <Button variant="solid" size="small" color="primary">Solid Small</Button>
+      <Button variant="solid" size="medium" color="secondary">Solid Medium</Button>
+      <Button variant="solid" size="large" color="positive">Solid Large</Button>
+      <Button variant="outline" size="medium" color="negative">Outline</Button>
+      <Button variant="text" size="medium" color="primary">Text</Button>
+      <Button variant="solid" size="medium" color="primary" icon-button icon-left="user"></Button>
+      <Button variant="solid" size="medium" color="secondary" icon-left="user"
+        >With Left Icon</Button
+      >
+      <Button variant="solid" size="medium" color="secondary" icon-right="user"
+        >With Right Icon</Button
+      >
+      <Button variant="solid" size="medium" color="secondary"> Click Me </Button>
+      <Button variant="solid" size="medium" color="secondary" disabled>Disabled</Button>
     </div>
     <Typography
       tag="p"
@@ -64,5 +82,3 @@ onUnmounted(() => {
     </div>
   </main>
 </template>
-
-<style lang="scss" scoped></style>

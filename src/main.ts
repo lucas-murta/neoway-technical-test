@@ -4,6 +4,7 @@ import App from './App.vue'
 import { router } from './router'
 import './styles/main.scss'
 import { initTheme, startThemeListener } from './composables/useTheme'
+import '@/lib/base-components/Icon/library'
 
 const app = createApp(App)
 initTheme()
