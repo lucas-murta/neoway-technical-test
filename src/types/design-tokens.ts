@@ -26,3 +26,5 @@ export type TokenContentColor =
   | 'content-warning'
   | 'content-positive'
   | 'content-negative'
+export type TokenBorderColor = 'border-1' | 'border-2' | 'border-3'
+export type TokenElevation = '0' | '1'

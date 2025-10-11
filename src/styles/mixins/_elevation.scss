@@ -1,0 +1,10 @@
+@use '@/styles/tokens' as *;
+
+@mixin elevation-classes() {
+  &--elevation-0 {
+    box-shadow: 0 1px 2px 0 $color-shadow-0;
+  }
+  &--elevation-1 {
+    box-shadow: 0 2px 4px 0 $color-shadow-1;
+  }
+}
