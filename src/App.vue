@@ -38,12 +38,28 @@ onUnmounted(() => {
     </Typography>
 
     <div style="margin-top: 24px">
-      <Typography tag="h2" variant="heading-3" font-family="heading" font-weight="semibold" size="2xl">
+      <Typography
+        tag="h2"
+        variant="heading-3"
+        font-family="heading"
+        font-weight="semibold"
+        size="2xl"
+      >
         Grid Component
       </Typography>
       <Grid :cols="2" :md-cols="3" :lg-cols="4" gap="2" padding="16px">
-        <div v-for="n in 8" :key="n" style="background-color: #fff; border: 1px solid #ddd; padding: 8px">
-          <Typography tag="p" variant="body-small" font-family="body" font-weight="regular" size="sm">
+        <div
+          v-for="n in 8"
+          :key="n"
+          style="background-color: #fff; border: 1px solid #ddd; padding: 8px"
+        >
+          <Typography
+            tag="p"
+            variant="body-small"
+            font-family="body"
+            font-weight="regular"
+            size="sm"
+          >
             Item {{ n }}
           </Typography>
         </div>
