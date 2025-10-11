@@ -1,11 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { describe, it, expect } from 'vitest'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
 import Button from './Button.vue'
 import '@/lib/base-components/Icon/library'
-
-library.add(faUser)
 
 describe('Button', () => {
   it('computes classes based on props', () => {
