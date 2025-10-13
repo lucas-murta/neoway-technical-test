@@ -4,7 +4,7 @@ import { AlignItems, Direction, SizeKeyword, SpacingOrAuto } from '@/types/spaci
 export interface GridProps {
   direction?: Direction
   alignItems?: AlignItems
-  justifyItens?: AlignItems
+  justifyItems?: AlignItems
 
   gap?: TokenSpacing
   gapX?: TokenSpacing

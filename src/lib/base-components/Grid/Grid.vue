@@ -14,7 +14,7 @@ const className = computed(() => {
 
   if (props.direction) classes.push(`${baseClass}--dir-${props.direction}`)
   if (props.alignItems) classes.push(`${baseClass}--ai-${props.alignItems}`)
-  if (props.justifyItens) classes.push(`${baseClass}--ji-${props.justifyItens}`)
+  if (props.justifyItems) classes.push(`${baseClass}--ji-${props.justifyItems}`)
 
   if (props.gap) classes.push(`${baseClass}--gap-${props.gap}`)
   if (props.gapX) classes.push(`${baseClass}--gapx-${props.gapX}`)

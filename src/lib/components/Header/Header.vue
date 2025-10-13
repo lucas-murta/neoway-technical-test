@@ -21,7 +21,7 @@ function onSearch() {
 
 <template>
   <header class="header">
-    <Grid :cols="5" gap="2" padding="1" align-items="center">
+    <Grid :cols="3" gap="2" padding="1" justify-items="center" align-items="center">
       <Button
         class="header__menu-button"
         variant="text"
@@ -31,29 +31,28 @@ function onSearch() {
         icon-left="bars"
         @click="onMenuClick"
       ></Button>
-      <span></span>
       <Typography variant="heading-3" font-family="heading" font-weight="bold" size="xl">
         Logo
       </Typography>
-      <span></span>
-      <Autocomplete
-        class="header__search-autocomplete"
-        name="header-search"
-        icon="magnifying-glass"
-        placeholder="Search"
-        :value="query"
-        :on-input="
-          (e) => {
-            const t = e.target as HTMLInputElement | null
-            if (t) query = t.value
-          }
-        "
-        :on-key-down="
-          (e) => {
-            if (e.key === 'Enter') onSearch()
-          }
-        "
-      ></Autocomplete>
+      <div class="header__search-autocomplete">
+        <Autocomplete
+          name="header-search"
+          icon="magnifying-glass"
+          placeholder="Search"
+          :value="query"
+          :on-input="
+            (e) => {
+              const t = e.target as HTMLInputElement | null
+              if (t) query = t.value
+            }
+          "
+          :on-key-down="
+            (e) => {
+              if (e.key === 'Enter') onSearch()
+            }
+          "
+        ></Autocomplete>
+      </div>
     </Grid>
   </header>
 </template>
@@ -64,17 +63,17 @@ function onSearch() {
 .header {
   background-color: $color-surface-0;
   border-bottom: 1px solid $color-border-1;
-}
 
-.header__right {
-  gap: spacing('2');
-}
+  &__right {
+    gap: spacing('2');
+  }
 
-.header__menu-button {
-  justify-self: flex-start;
-}
+  &__menu-button {
+    justify-self: flex-start;
+  }
 
-.header__search-autocomplete {
-  justify-self: flex-end;
+  &__search-autocomplete {
+    justify-self: flex-end;
+  }
 }
 </style>
