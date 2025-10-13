@@ -44,6 +44,7 @@ const styleVars = computed<Record<string, string>>(() => {
   if (props.mdMargin) vars['--grid-md-margin'] = parseShorthand(props.mdMargin)
   if (props.lgMargin) vars['--grid-lg-margin'] = parseShorthand(props.lgMargin)
 
+  if (props.gridColumn) vars['grid-column'] = props.gridColumn
   return vars
 })
 </script>
