@@ -2,4 +2,5 @@ import type { Article } from '@/service/newsapi/types'
 
 export interface CardProps {
   article: Article
+  onClick?: (_event: MouseEvent) => void
 }

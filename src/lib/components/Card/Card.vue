@@ -17,7 +17,7 @@ const formattedDate = computed(() => {
 </script>
 
 <template>
-  <button type="button" class="card">
+  <button type="button" class="card" @click="onClick && onClick($event)">
     <Paper background="surface-0" border="border-1" border-radius="2" elevation="1" padding="2">
       <Grid :cols="1" :sm-cols="1" :md-cols="2" :lg-cols="2" gap="2" align-items="start">
         <Grid class="card__media">
