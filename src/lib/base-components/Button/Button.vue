@@ -8,6 +8,7 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   variant: 'solid',
   size: 'medium',
   color: 'primary',
+  textAlign: 'center',
 })
 
 const classes = computed(() => {
@@ -17,6 +18,7 @@ const classes = computed(() => {
   c.push(`button--color-${props.color}`)
   if (props.iconButton) c.push('button--icon-only')
   if (props.full && !props.iconButton) c.push('button--full')
+  if (props.full && !props.iconButton) c.push(`button--text-${props.textAlign}`)
   if (props.disabled) c.push('is-disabled')
   if (props.className) c.push(props.className)
   return c.join(' ')
@@ -38,17 +40,18 @@ const labelSize = computed(() => {
 <template>
   <button type="button" :class="classes" :disabled="disabled" @click="onClick && onClick($event)">
     <Icon v-if="iconLeft" :icon="['fas', iconLeft]" :size="iconSize" class="button__icon left" />
-    <Typography
-      v-if="!iconButton"
-      tag="span"
-      variant="body-medium"
-      font-family="body"
-      font-weight="regular"
-      :size="labelSize"
-      class="button__label"
-    >
-      <slot />
-    </Typography>
+    <span v-if="!iconButton" class="button__content">
+      <Typography
+        tag="span"
+        variant="body-medium"
+        font-family="body"
+        font-weight="regular"
+        :size="labelSize"
+        class="button__label"
+      >
+        <slot />
+      </Typography>
+    </span>
     <Icon v-if="iconRight" :icon="['fas', iconRight]" :size="iconSize" class="button__icon right" />
   </button>
 </template>
@@ -57,9 +60,11 @@ const labelSize = computed(() => {
 @use '@/styles/tokens' as *;
 
 .button {
-  display: inline-flex;
+  display: inline-grid;
+  grid-auto-flow: column;
   align-items: center;
   justify-content: center;
+  grid-template-columns: auto 1fr auto;
   gap: spacing('1');
   border: 1px solid transparent;
   background: transparent;
@@ -72,6 +77,9 @@ const labelSize = computed(() => {
 
   &.button--full {
     width: 100%;
+    .button__content {
+      width: 100%;
+    }
   }
 
   &:focus-visible {
@@ -104,6 +112,7 @@ const labelSize = computed(() => {
   &--icon-only {
     padding-left: 0;
     padding-right: 0;
+    grid-template-columns: auto;
 
     &.button--size-small {
       width: spacing('4');
@@ -188,6 +197,33 @@ const labelSize = computed(() => {
     color: $color-content-disable;
     border-color: $color-surface-3;
     cursor: not-allowed;
+  }
+  &.button--text-start {
+    .button__content {
+      text-align: left;
+    }
+  }
+
+  &.button--text-center {
+    .button__content {
+      text-align: center;
+    }
+  }
+
+  &.button--text-end {
+    .button__content {
+      text-align: right;
+    }
+  }
+  .button__icon.left {
+    justify-self: start;
+  }
+  .button__icon.right {
+    justify-self: end;
+  }
+
+  .button__content {
+    display: block;
   }
 }
 </style>
