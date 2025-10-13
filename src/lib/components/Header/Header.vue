@@ -62,17 +62,17 @@ function onSearch() {
 .header {
   background-color: $color-surface-0;
   border-bottom: 1px solid $color-border-1;
-}
 
-.header__right {
-  gap: spacing('2');
-}
+  &__right {
+    gap: spacing('2');
+  }
 
-.header__menu-button {
-  justify-self: flex-start;
-}
+  &__menu-button {
+    justify-self: flex-start;
+  }
 
-.header__search-autocomplete {
-  justify-self: flex-end;
+  &__search-autocomplete {
+    justify-self: flex-end;
+  }
 }
 </style>
