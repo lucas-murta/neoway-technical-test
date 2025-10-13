@@ -12,6 +12,8 @@ import {
   faFlask,
   faPersonRunning,
   faMicrochip,
+  faAngleLeft,
+  faAngleRight,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -27,4 +29,6 @@ library.add(
   faFlask,
   faPersonRunning,
   faMicrochip,
+  faAngleLeft,
+  faAngleRight,
 )
