@@ -55,3 +55,36 @@ export function createInputHandlers<T extends InputHandlersProps>(params: {
 
   return { onInput, onChange, onFocus, onBlur, onKeyDown, onKeyUp, onClick, selectOption }
 }
+
+export function createAutocompleteKeydown(params: {
+  onKeyDown?: (e: KeyboardEvent) => void
+  isFocused: Ref<boolean>
+  activeIndex: Ref<number>
+  filteredOptions: Ref<{ label: string; value: string }[]>
+  selectOption: (opt: { label: string; value: string }) => void
+}) {
+  const { onKeyDown, isFocused, activeIndex, filteredOptions, selectOption } = params
+  return (e: KeyboardEvent) => {
+    onKeyDown?.(e)
+    const total = filteredOptions.value.length
+    if (!total) return
+    if (e.key === 'ArrowDown') {
+      e.preventDefault()
+      isFocused.value = true
+      activeIndex.value = (activeIndex.value + 1) % total
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault()
+      isFocused.value = true
+      activeIndex.value = activeIndex.value <= 0 ? total - 1 : activeIndex.value - 1
+    } else if (e.key === 'Enter') {
+      if (activeIndex.value >= 0 && activeIndex.value < total) {
+        selectOption(filteredOptions.value[activeIndex.value])
+        isFocused.value = false
+        activeIndex.value = -1
+      }
+    } else if (e.key === 'Escape') {
+      isFocused.value = false
+      activeIndex.value = -1
+    }
+  }
+}

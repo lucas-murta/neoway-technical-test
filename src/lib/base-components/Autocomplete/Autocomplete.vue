@@ -3,7 +3,7 @@ import { ref, computed, watch } from 'vue'
 import Icon from '@/lib/base-components/Icon/Icon.vue'
 import Typography from '@/lib/base-components/Typography/Typography.vue'
 import type { AutocompleteProps } from './autocomplete.interface'
-import { createInputHandlers } from '@/utils/input-hooks'
+import { createInputHandlers, createAutocompleteKeydown } from '@/utils/input-hooks'
 import Paper from '../Paper/Paper.vue'
 
 const props = withDefaults(defineProps<AutocompleteProps>(), {
@@ -13,12 +13,17 @@ const props = withDefaults(defineProps<AutocompleteProps>(), {
 
 const query = ref(props.value ?? '')
 const isFocused = ref(false)
+const activeIndex = ref(-1)
+const listId = `autocomplete-list-${Math.random().toString(36).slice(2)}`
 watch(
   () => props.value,
   (val) => {
     if (val !== query.value) query.value = val ?? ''
   },
 )
+watch(query, () => {
+  activeIndex.value = -1
+})
 
 const classes = computed(() => {
   const c: string[] = ['autocomplete']
@@ -42,6 +47,14 @@ const filteredOptions = computed(() => {
 
 const { onInput, onChange, onFocus, onBlur, onKeyDown, onKeyUp, onClick, selectOption } =
   createInputHandlers({ props, query, isFocused })
+
+const handleKeyDown = createAutocompleteKeydown({
+  onKeyDown,
+  isFocused,
+  activeIndex,
+  filteredOptions,
+  selectOption,
+})
 </script>
 
 <template>
@@ -85,14 +98,14 @@ const { onInput, onChange, onFocus, onBlur, onKeyDown, onKeyUp, onClick, selectO
           @change="onChange"
           @focus="onFocus"
           @blur="onBlur"
-          @keydown="onKeyDown"
+          @keydown="handleKeyDown"
           @keyup="onKeyUp"
         />
-        <ul v-if="isFocused && filteredOptions.length" class="autocomplete__list">
+        <ul v-if="isFocused && filteredOptions.length" :id="listId" class="autocomplete__list">
           <li
-            v-for="opt in filteredOptions"
+            v-for="(opt, index) in filteredOptions"
             :key="opt.value"
-            class="autocomplete__item"
+            :class="['autocomplete__item', { 'is-active': index === activeIndex }]"
             @mousedown.prevent="selectOption(opt)"
           >
             <Typography tag="span" variant="body-small" font-family="body" font-weight="regular">
@@ -185,6 +198,9 @@ const { onInput, onChange, onFocus, onBlur, onKeyDown, onKeyUp, onClick, selectO
     padding: spacing('1') spacing('2');
     cursor: pointer;
     &:hover {
+      background-color: $color-surface-1;
+    }
+    &.is-active {
       background-color: $color-surface-1;
     }
   }
