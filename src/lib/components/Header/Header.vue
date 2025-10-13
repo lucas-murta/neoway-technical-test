@@ -4,6 +4,7 @@ import Typography from '@/lib/base-components/Typography/Typography.vue'
 import Button from '@/lib/base-components/Button/Button.vue'
 import Autocomplete from '@/lib/base-components/Autocomplete/Autocomplete.vue'
 import Grid from '@/lib/base-components/Grid/Grid.vue'
+import Icon from '@/lib/base-components/Icon/Icon.vue'
 import type { HeaderEmits } from './header.interface'
 
 const emit = defineEmits<HeaderEmits>()
@@ -32,7 +33,10 @@ function onSearch() {
         @click="onMenuClick"
       ></Button>
       <Typography variant="heading-3" font-family="heading" font-weight="bold" size="xl">
-        Logo
+        <span class="header__brand">
+          <Icon :icon="['fas', 'globe']" class="header__brand-icon" />
+          Global News
+        </span>
       </Typography>
       <div class="header__search-autocomplete">
         <Autocomplete
@@ -77,6 +81,17 @@ function onSearch() {
 
   &__search-autocomplete {
     justify-self: flex-end;
+  }
+
+  &__brand {
+    display: inline-grid;
+    grid-auto-flow: column;
+    align-items: center;
+    gap: spacing('1');
+  }
+
+  &__brand-icon {
+    color: $color-primary;
   }
 }
 </style>
