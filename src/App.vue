@@ -7,6 +7,7 @@ import Paper from './lib/base-components/Paper/Paper.vue'
 import Thumbnail from './lib/base-components/Thumbnail/Thumbnail.vue'
 import Button from './lib/base-components/Button/Button.vue'
 import Autocomplete from './lib/base-components/Autocomplete/Autocomplete.vue'
+import Header from '@/lib/components/Header/Header.vue'
 const stop = inject<() => void>('stopThemeListener')
 onUnmounted(() => {
   if (typeof stop === 'function') stop()
@@ -14,6 +15,10 @@ onUnmounted(() => {
 </script>
 
 <template>
+  <Header
+    @menu-click="() => console.log('menu clicked')"
+    @search-autocomplete="(payload) => console.log('search autocomplete', payload)"
+  />
   <main style="padding: 16px">
     <div style="margin-bottom: 24px; max-width: 400px">
       <Typography
