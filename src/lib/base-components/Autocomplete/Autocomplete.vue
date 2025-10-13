@@ -71,13 +71,7 @@ const handleKeyDown = createAutocompleteKeydown({
       </Typography>
 
       <div class="autocomplete__field">
-        <Paper
-          background="surface-2"
-          border="none"
-          height="4"
-          width="4"
-          class="autocomplete__icon-paper"
-        >
+        <Paper border="none" height="4" width="4" class="autocomplete__icon-paper">
           <Icon v-if="icon" :icon="['fas', icon]" size="sm" class="autocomplete__icon" />
         </Paper>
         <input
@@ -166,6 +160,7 @@ const handleKeyDown = createAutocompleteKeydown({
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    background-color: $color-border-1;
   }
 
   &__input {
