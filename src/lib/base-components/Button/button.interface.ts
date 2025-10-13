@@ -8,6 +8,7 @@ export interface ButtonProps {
   color?: ButtonColor
   className?: string
   disabled?: boolean
+  full?: boolean
   iconButton?: boolean
   iconLeft?: string
   iconRight?: string
