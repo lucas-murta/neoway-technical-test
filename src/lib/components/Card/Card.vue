@@ -17,8 +17,8 @@ const formattedDate = computed(() => {
 </script>
 
 <template>
-  <Paper background="surface-0" border="border-1" border-radius="2" elevation="1" padding="2">
-    <div class="card">
+  <button type="button" class="card">
+    <Paper background="surface-0" border="border-1" border-radius="2" elevation="1" padding="2">
       <Grid :cols="1" :sm-cols="1" :md-cols="2" :lg-cols="2" gap="2" align-items="start">
         <Grid class="card__media">
           <Thumbnail
@@ -71,8 +71,8 @@ const formattedDate = computed(() => {
           </Typography>
         </Grid>
       </Grid>
-    </div>
-  </Paper>
+    </Paper>
+  </button>
 </template>
 
 <style scoped lang="scss">
@@ -81,6 +81,20 @@ const formattedDate = computed(() => {
 
 .card {
   display: block;
+  background: transparent;
+  border: none;
+  border-radius: spacing('2');
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  width: 100%;
+  text-align: -webkit-auto;
+  color: inherit;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--color-status-focus);
+  }
 
   &__media {
     height: 12rem;
