@@ -12,5 +12,6 @@ export interface ButtonProps {
   iconButton?: boolean
   iconLeft?: string
   iconRight?: string
+  textAlign?: 'start' | 'center' | 'end'
   onClick?: (_event: MouseEvent) => void
 }
