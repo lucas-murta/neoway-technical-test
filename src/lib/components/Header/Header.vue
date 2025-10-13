@@ -34,24 +34,25 @@ function onSearch() {
       <Typography variant="heading-3" font-family="heading" font-weight="bold" size="xl">
         Logo
       </Typography>
-      <Autocomplete
-        class="header__search-autocomplete"
-        name="header-search"
-        icon="magnifying-glass"
-        placeholder="Search"
-        :value="query"
-        :on-input="
-          (e) => {
-            const t = e.target as HTMLInputElement | null
-            if (t) query = t.value
-          }
-        "
-        :on-key-down="
-          (e) => {
-            if (e.key === 'Enter') onSearch()
-          }
-        "
-      ></Autocomplete>
+      <div class="header__search-autocomplete">
+        <Autocomplete
+          name="header-search"
+          icon="magnifying-glass"
+          placeholder="Search"
+          :value="query"
+          :on-input="
+            (e) => {
+              const t = e.target as HTMLInputElement | null
+              if (t) query = t.value
+            }
+          "
+          :on-key-down="
+            (e) => {
+              if (e.key === 'Enter') onSearch()
+            }
+          "
+        ></Autocomplete>
+      </div>
     </Grid>
   </header>
 </template>

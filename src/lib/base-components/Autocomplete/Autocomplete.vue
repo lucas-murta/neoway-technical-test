@@ -58,7 +58,7 @@ const handleKeyDown = createAutocompleteKeydown({
 </script>
 
 <template>
-  <div :class="classes" @click="onClick" v-bind="$attrs">
+  <div :class="classes" v-bind="$attrs" @click="onClick">
     <label class="autocomplete__label">
       <Typography
         v-if="label"
@@ -136,10 +136,6 @@ const handleKeyDown = createAutocompleteKeydown({
   display: flex;
   flex-direction: column;
   gap: spacing('1');
-
-  &__label {
-    margin-bottom: spacing('1');
-  }
 
   &__field {
     display: flex;
