@@ -70,7 +70,9 @@ onUnmounted(() => {
       <Button variant="solid" size="medium" color="secondary" disabled>Disabled</Button>
     </div>
     <div style="margin-top: 16px; display: flex; gap: 8px; align-items: center">
-      <Button variant="solid" size="medium" color="primary" icon-left="user" icon-right="user" full>Solid Full</Button>
+      <Button variant="solid" size="medium" color="primary" icon-left="user" icon-right="user" full
+        >Solid Full</Button
+      >
     </div>
     <Typography
       tag="p"
