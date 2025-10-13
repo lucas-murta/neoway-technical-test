@@ -8,7 +8,7 @@ describe('Grid', () => {
       props: {
         direction: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyItens: 'center',
         gap: '2',
         gapX: '3',
         gapY: '4',
@@ -23,7 +23,7 @@ describe('Grid', () => {
     expect(classes).toContain('grid')
     expect(classes).toContain('grid--dir-row')
     expect(classes).toContain('grid--ai-center')
-    expect(classes).toContain('grid--jc-space-between')
+    expect(classes).toContain('grid--ji-center')
     expect(classes).toContain('grid--gap-2')
     expect(classes).toContain('grid--gapx-3')
     expect(classes).toContain('grid--gapy-4')

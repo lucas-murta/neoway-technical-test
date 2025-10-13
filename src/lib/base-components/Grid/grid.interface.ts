@@ -1,10 +1,10 @@
 import type { TokenSpacing } from '@/types/design-tokens'
-import { AlignItems, Direction, JustifyContent, SizeKeyword, SpacingOrAuto } from '@/types/spacing'
+import { AlignItems, Direction, SizeKeyword, SpacingOrAuto } from '@/types/spacing'
 
 export interface GridProps {
   direction?: Direction
   alignItems?: AlignItems
-  justifyContent?: JustifyContent
+  justifyItens?: AlignItems
 
   gap?: TokenSpacing
   gapX?: TokenSpacing
