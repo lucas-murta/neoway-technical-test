@@ -5,6 +5,8 @@ import Grid from '@/lib/base-components/Grid/Grid.vue'
 import Card from '@/lib/components/Card/Card.vue'
 import { useNews } from '@/composables/useNews'
 import Pagination from '@/lib/components/Pagination/Pagination.vue'
+import type { Article } from '@/service/newsapi/types'
+import { openExternalLink } from '@/utils/dom/openExternalLink'
 
 const { loading, error, articles, totalResults, fetchArticles } = useNews()
 const route = useRoute()
@@ -24,6 +26,10 @@ onMounted(() => {
 function onPaginationChange(payload: { page: number }) {
   page.value = payload.page
 }
+
+function onCardClick(article: Article) {
+  openExternalLink(article.url)
+}
 </script>
 
 <template>
@@ -33,7 +39,12 @@ function onPaginationChange(payload: { page: number }) {
     <p v-if="!loading && !error && typeof route.query.q === 'string' && articles.length === 0">
       No results found
     </p>
-    <Card v-for="(a, i) in articles" :key="a.url || i" :article="a" />
+    <Card
+      v-for="(a, i) in articles"
+      :key="a.url || i"
+      :article="a"
+      :on-click="($event) => onCardClick(a)"
+    />
     <Pagination
       :page="page"
       :page-size="pageSize"

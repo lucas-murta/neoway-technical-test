@@ -21,11 +21,6 @@ const routes: RouteRecordRaw[] = [
     name: 'technology',
     component: () => import('@/pages/Technology/index.vue'),
   },
-  {
-    path: '/publication/:id',
-    name: 'publication',
-    component: () => import('@/pages/Publication/index.vue'),
-  },
 ]
 
 export const router = createRouter({
