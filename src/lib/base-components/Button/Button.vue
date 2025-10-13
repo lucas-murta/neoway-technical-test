@@ -68,6 +68,12 @@ const labelSize = computed(() => {
   outline: none;
   border-radius: spacing('1');
 
+  &:focus-visible {
+    outline: none;
+    border-color: $color-status-focus;
+    box-shadow: 0 0 0 2px $color-status-focus;
+  }
+
   &--size-small {
     height: spacing('4');
     padding-left: spacing('2');
