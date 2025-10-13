@@ -95,3 +95,10 @@
     align-content: stretch;
   }
 }
+
+// Utility mixin to center content using flexbox
+@mixin center-both {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
