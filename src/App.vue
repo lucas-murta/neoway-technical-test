@@ -14,7 +14,19 @@ function onToggleMenu() {
 
 function onHeaderSearch(payload: { value: string }) {
   const term = payload?.value?.trim() || ''
-  router.push({ name: 'home', query: term ? { q: term } : {} })
+  const current = router.currentRoute.value
+  const allowed = new Set([
+    'home',
+    'business',
+    'entertainment',
+    'general',
+    'health',
+    'science',
+    'sports',
+    'technology',
+  ])
+  const targetName = allowed.has(String(current.name)) ? String(current.name) : 'home'
+  router.push({ name: targetName, query: term ? { q: term } : {} })
 }
 onUnmounted(() => {
   if (typeof stop === 'function') stop()

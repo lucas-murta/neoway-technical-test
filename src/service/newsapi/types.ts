@@ -15,6 +15,7 @@ export interface ArticlesQuery {
   domains?: string
   excludeDomains?: string
   language?: string
+  category?: 'business' | 'entertainment' | 'general' | 'health' | 'science' | 'sports' | 'technology'
   sortBy?: 'relevancy' | 'popularity' | 'publishedAt'
   pageSize?: number
   page?: number
