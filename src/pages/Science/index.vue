@@ -5,6 +5,7 @@ import Grid from '@/lib/base-components/Grid/Grid.vue'
 import Typography from '@/lib/base-components/Typography/Typography.vue'
 import Card from '@/lib/components/Card/Card.vue'
 import Pagination from '@/lib/components/Pagination/Pagination.vue'
+import Loading from '@/lib/base-components/Loading/Loading.vue'
 import { useNews } from '@/composables/useNews'
 import type { Article } from '@/service/newsapi/types'
 import { openExternalLink } from '@/utils/dom/openExternalLink'
@@ -34,9 +35,11 @@ function onCardClick(article: Article) {
 </script>
 
 <template>
-  <Grid col="1" gap="2" align-content="start">
+  <Grid v-if="loading" height="full" width="full" justify-items="center" align-items="center">
+    <Loading size="lg" />
+  </Grid>
+  <Grid v-if="!loading" col="1" gap="2" align-content="start">
     <Typography variant="heading-2" font-family="heading" font-weight="bold">Science</Typography>
-    <p v-if="loading">Loading…</p>
     <p v-if="error">Error: {{ error }}</p>
     <p v-if="!loading && !error && typeof route.query.q === 'string' && articles.length === 0">
       No results found

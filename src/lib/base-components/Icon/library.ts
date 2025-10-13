@@ -14,7 +14,11 @@ import {
   faMicrochip,
   faAngleLeft,
   faAngleRight,
+  faCircleNotch,
+  faCircle as faCircleSolid,
 } from '@fortawesome/free-solid-svg-icons'
+
+import { faCircle, faBookmark } from '@fortawesome/free-regular-svg-icons'
 
 library.add(
   faUser,
@@ -31,4 +35,8 @@ library.add(
   faMicrochip,
   faAngleLeft,
   faAngleRight,
+  faCircleNotch,
+  faCircleSolid,
+  faCircle,
+  faBookmark,
 )
