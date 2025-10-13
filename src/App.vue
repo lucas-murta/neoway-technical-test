@@ -22,7 +22,7 @@ onUnmounted(() => {
     <Grid :cols="12" gap="2" padding="none" height="full">
       <Grid v-if="menuOpen" :grid-column="menuOpen ? 'span 2' : 'span 0'" height="full"></Grid>
       <Grid :grid-column="menuOpen ? 'span 10' : 'span 12'" height="full">
-        <Grid container height="full" margin="0 auto">
+        <Grid container width="full" height="full" margin="0 auto">
           <Paper padding="2" background="surface-0" border-radius="2">
             <RouterView />
           </Paper>

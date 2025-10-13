@@ -50,7 +50,7 @@ const styleVars = computed<Record<string, string>>(() => {
 </script>
 
 <template>
-  <div :class="className" :style="styleVars">
+  <div :class="className" :style="styleVars" :data-container="props.container ? 'true' : undefined">
     <slot />
   </div>
 </template>
@@ -96,5 +96,23 @@ const styleVars = computed<Record<string, string>>(() => {
   @include spacings.cols-classes('cols');
 
   @include spacings.responsive-cols();
+}
+
+:where(.grid)[data-container='true'] {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: 640px) {
+    max-width: 640px;
+  }
+
+  @media (min-width: 768px) {
+    max-width: 768px;
+  }
+
+  @media (min-width: 1024px) {
+    max-width: 1024px;
+  }
 }
 </style>
