@@ -43,6 +43,7 @@ const formattedDate = computed(() => {
             font-family="heading"
             font-weight="bold"
             size="lg"
+            :lines="1"
             class="card__title"
           >
             {{ article.title }}
