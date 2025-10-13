@@ -16,6 +16,7 @@ const classes = computed(() => {
   c.push(`button--size-${props.size}`)
   c.push(`button--color-${props.color}`)
   if (props.iconButton) c.push('button--icon-only')
+  if (props.full && !props.iconButton) c.push('button--full')
   if (props.disabled) c.push('is-disabled')
   if (props.className) c.push(props.className)
   return c.join(' ')
@@ -67,6 +68,11 @@ const labelSize = computed(() => {
   text-decoration: none;
   outline: none;
   border-radius: spacing('1');
+  width: auto;
+
+  &.button--full {
+    width: 100%;
+  }
 
   &:focus-visible {
     outline: none;
