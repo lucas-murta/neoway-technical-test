@@ -8,7 +8,7 @@ describe('Grid', () => {
       props: {
         direction: 'row',
         alignItems: 'center',
-        justifyItens: 'center',
+        justifyItems: 'center',
         gap: '2',
         gapX: '3',
         gapY: '4',
