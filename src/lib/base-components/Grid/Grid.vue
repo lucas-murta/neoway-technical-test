@@ -15,6 +15,7 @@ const className = computed(() => {
   if (props.direction) classes.push(`${baseClass}--dir-${props.direction}`)
   if (props.alignItems) classes.push(`${baseClass}--ai-${props.alignItems}`)
   if (props.justifyItems) classes.push(`${baseClass}--ji-${props.justifyItems}`)
+  if (props.alignContent) classes.push(`${baseClass}--ac-${props.alignContent}`)
 
   if (props.gap) classes.push(`${baseClass}--gap-${props.gap}`)
   if (props.gapX) classes.push(`${baseClass}--gapx-${props.gapX}`)
@@ -86,6 +87,7 @@ const styleVars = computed<Record<string, string>>(() => {
   @include flex.direction-classes();
   @include flex.align-items-classes();
   @include flex.justify-items-classes();
+  @include flex.align-content-classes();
 
   @include spacings.gap-classes('gap', gap);
 

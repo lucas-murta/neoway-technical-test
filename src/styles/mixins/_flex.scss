@@ -71,3 +71,27 @@
     justify-items: baseline;
   }
 }
+
+@mixin align-content-classes($prefix: '') {
+  &--#{$prefix}ac-start {
+    align-content: start;
+  }
+  &--#{$prefix}ac-center {
+    align-content: center;
+  }
+  &--#{$prefix}ac-end {
+    align-content: end;
+  }
+  &--#{$prefix}ac-space-between {
+    align-content: space-between;
+  }
+  &--#{$prefix}ac-space-around {
+    align-content: space-around;
+  }
+  &--#{$prefix}ac-space-evenly {
+    align-content: space-evenly;
+  }
+  &--#{$prefix}ac-stretch {
+    align-content: stretch;
+  }
+}
