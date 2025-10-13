@@ -1,37 +1,21 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import Grid from '@/lib/base-components/Grid/Grid.vue'
 import Card from '@/lib/components/Card/Card.vue'
-import type { Article } from '@/service/newsapi/types'
+import { useNews } from '@/composables/useNews'
 
-const sample: Article = {
-  source: { id: null, name: 'Sample Source' },
-  author: 'John Doe',
-  title: 'Sample Article Title',
-  description:
-    'This is a long description intended to test line wrapping in the article card component. It spans multiple sentences to verify how the layout handles overflow, spacing, and readability across different viewport widths and container sizes.',
-  url: 'https://example.com',
-  urlToImage: 'https://placehold.co/800x400',
-  publishedAt: new Date().toISOString(),
-  content: null,
-}
+const { loading, error, articles, fetchArticles } = useNews()
 
-const example: Article = {
-  source: { id: null, name: 'Sample Source' },
-  author: 'John Doe',
-  title: 'Sample Article Title',
-  description:
-    'This is a long description intended to test line wrapping in the article card component. It spans multiple sentences to verify how the layout handles overflow, spacing, and readability across different viewport widths and container sizes.',
-  url: 'https://example.com',
-  urlToImage: null,
-  publishedAt: new Date().toISOString(),
-  content: null,
-}
+onMounted(() => {
+  fetchArticles()
+})
 </script>
 
 <template>
   <Grid col="1" gap="2" align-content="start">
-    <Card :article="sample" />
-    <Card :article="example" />
+    <p v-if="loading">Carregando…</p>
+    <p v-if="error">Erro: {{ error }}</p>
+    <Card v-for="(a, i) in articles" :key="a.url || i" :article="a" />
   </Grid>
 </template>
 
