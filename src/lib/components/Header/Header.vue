@@ -61,6 +61,9 @@ function onSearch() {
 @use '@/styles/tokens' as *;
 
 .header {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
   background-color: $color-surface-0;
   border-bottom: 1px solid $color-border-1;
 
