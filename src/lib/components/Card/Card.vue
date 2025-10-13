@@ -48,6 +48,16 @@ const formattedDate = computed(() => {
             {{ article.title }}
           </Typography>
           <Typography
+            tag="p"
+            variant="body-small"
+            font-family="body"
+            font-weight="regular"
+            size="sm"
+            class="card__meta"
+          >
+            {{ article.source.name }} • {{ article.author || 'Unknown' }} • {{ formattedDate }}
+          </Typography>
+          <Typography
             v-if="article.description"
             tag="p"
             variant="body-medium"
@@ -58,16 +68,6 @@ const formattedDate = computed(() => {
             class="card__description"
           >
             {{ article.description }}
-          </Typography>
-          <Typography
-            tag="p"
-            variant="body-small"
-            font-family="body"
-            font-weight="regular"
-            size="sm"
-            class="card__meta"
-          >
-            {{ article.source.name }} • {{ article.author || 'Unknown' }} • {{ formattedDate }}
           </Typography>
         </Grid>
       </Grid>
@@ -81,28 +81,34 @@ const formattedDate = computed(() => {
 
 .card {
   display: block;
-}
 
-.card__media {
-  height: 12rem;
-}
+  &__media {
+    height: 12rem;
+  }
 
-.card__placeholder {
-  @include flex.center-both;
-}
+  &__placeholder {
+    @include flex.center-both;
+  }
 
-.card__image {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: spacing('1');
-}
+  &__image {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: spacing('1');
+  }
 
-.card__title {
-  margin: 0;
-}
+  &__title {
+    margin: 0;
+  }
 
-.card__description {
-  margin: 0;
+  &__meta {
+    margin: 0;
+    padding-bottom: spacing('1');
+    border-bottom: 1px solid $color-border-1;
+  }
+
+  &__description {
+    margin: 0;
+  }
 }
 </style>
