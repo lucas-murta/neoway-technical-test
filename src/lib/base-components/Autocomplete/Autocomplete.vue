@@ -58,7 +58,7 @@ const handleKeyDown = createAutocompleteKeydown({
 </script>
 
 <template>
-  <div :class="classes" @click="onClick">
+  <div :class="classes" @click="onClick" v-bind="$attrs">
     <label class="autocomplete__label">
       <Typography
         v-if="label"
