@@ -1,13 +1,20 @@
 <script setup lang="ts">
 import { inject, onUnmounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import Grid from '@/lib/base-components/Grid/Grid.vue'
 import Header from '@/lib/components/Header/Header.vue'
 import Paper from './lib/base-components/Paper/Paper.vue'
 import Navbar from '@/lib/components/Navbar/Navbar.vue'
 const stop = inject<() => void>('stopThemeListener')
+const router = useRouter()
 const menuOpen = ref(false)
 function onToggleMenu() {
   menuOpen.value = !menuOpen.value
+}
+
+function onHeaderSearch(payload: { value: string }) {
+  const term = payload?.value?.trim() || ''
+  router.push({ name: 'home', query: term ? { q: term } : {} })
 }
 onUnmounted(() => {
   if (typeof stop === 'function') stop()
@@ -15,10 +22,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <Header
-    @menu-click="onToggleMenu"
-    @search-autocomplete="(payload) => console.log('search autocomplete', payload)"
-  />
+  <Header @menu-click="onToggleMenu" @search-autocomplete="onHeaderSearch" />
   <main class="app-main">
     <Grid :cols="12" gap="2" padding="none" height="full">
       <Grid
