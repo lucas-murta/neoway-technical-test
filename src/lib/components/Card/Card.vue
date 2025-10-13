@@ -54,6 +54,7 @@ const formattedDate = computed(() => {
             font-family="highlight"
             font-weight="regular"
             size="base"
+            :lines="3"
             class="card__description"
           >
             {{ article.description }}

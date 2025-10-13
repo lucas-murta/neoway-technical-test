@@ -15,6 +15,7 @@ interface Props {
   fontWeight?: TokenFontWeight
   color?: TokenContentColor
   tag?: TagName
+  lines?: number
   variant?:
     | 'heading-1'
     | 'heading-2'
@@ -40,10 +41,20 @@ const className = computed(() => {
 })
 
 const tagName = computed(() => props.tag ?? 'p')
+
+const clampStyle = computed(() => {
+  if (!props.lines) return {}
+  return {
+    display: '-webkit-box',
+    overflow: 'hidden',
+    '-webkit-box-orient': 'vertical',
+    '-webkit-line-clamp': String(props.lines),
+  }
+})
 </script>
 
 <template>
-  <component :is="tagName" :class="className">
+  <component :is="tagName" :class="className" :style="clampStyle">
     <slot />
   </component>
 </template>
