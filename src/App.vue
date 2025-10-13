@@ -4,6 +4,7 @@ import Typography from './lib/base-components/Typography/Typography.vue'
 import Icon from './lib/base-components/Icon/Icon.vue'
 import Grid from './lib/base-components/Grid/Grid.vue'
 import Paper from './lib/base-components/Paper/Paper.vue'
+import Thumbnail from './lib/base-components/Thumbnail/Thumbnail.vue'
 import Button from './lib/base-components/Button/Button.vue'
 import Autocomplete from './lib/base-components/Autocomplete/Autocomplete.vue'
 const stop = inject<() => void>('stopThemeListener')
@@ -96,6 +97,44 @@ onUnmounted(() => {
             Item {{ n }}
           </Typography>
         </Paper>
+      </Grid>
+    </div>
+
+    <div style="margin-top: 24px">
+      <Typography
+        tag="h2"
+        variant="heading-3"
+        font-family="heading"
+        font-weight="semibold"
+        size="2xl"
+      >
+        Thumbnail Component
+      </Typography>
+      <Grid :cols="3" :md-cols="3" :lg-cols="3" gap="2" padding="16px">
+        <Thumbnail
+          url="https://picsum.photos/seed/1/320/180"
+          overlap="1"
+          interact
+          border-radius="1"
+          width="12"
+          height="9"
+        />
+        <Thumbnail
+          url="https://picsum.photos/seed/2/320/180"
+          overlap="2"
+          border-radius="2"
+          width="12"
+          height="9"
+          padding="1"
+        />
+        <Thumbnail
+          url="https://picsum.photos/seed/3/320/180"
+          overlap="3"
+          interact
+          width="12"
+          height="9"
+          margin="1"
+        />
       </Grid>
     </div>
   </main>
