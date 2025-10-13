@@ -16,6 +16,7 @@ interface Props {
   color?: TokenContentColor
   tag?: TagName
   lines?: number
+  ariaLabel?: string
   variant?:
     | 'heading-1'
     | 'heading-2'
@@ -54,7 +55,7 @@ const clampStyle = computed(() => {
 </script>
 
 <template>
-  <component :is="tagName" :class="className" :style="clampStyle">
+  <component :is="tagName" :class="className" :style="clampStyle" :aria-label="props.ariaLabel">
     <slot />
   </component>
 </template>
