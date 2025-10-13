@@ -53,3 +53,21 @@
     justify-content: space-evenly;
   }
 }
+
+@mixin justify-items-classes($prefix: '') {
+  &--#{$prefix}ji-start {
+    justify-items: start;
+  }
+  &--#{$prefix}ji-center {
+    justify-items: center;
+  }
+  &--#{$prefix}ji-end {
+    justify-items: end;
+  }
+  &--#{$prefix}ji-stretch {
+    justify-items: stretch;
+  }
+  &--#{$prefix}ji-baseline {
+    justify-items: baseline;
+  }
+}
