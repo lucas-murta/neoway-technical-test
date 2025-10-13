@@ -6,6 +6,7 @@ export function useNews() {
   const loading = ref(false)
   const error = ref<string | null>(null)
   const articles = ref<ArticlesResponse['articles']>([])
+  const totalResults = ref<number | null>(null)
 
   const client = createNewsApiClient()
 
@@ -20,6 +21,7 @@ export function useNews() {
       }
       const result = await client.topHeadlines(params)
       articles.value = result.articles ?? []
+      totalResults.value = result.totalResults ?? null
       return result
     } catch (err: any) {
       error.value = err?.message ?? 'Failed to fetch articles'
@@ -33,6 +35,7 @@ export function useNews() {
     loading,
     error,
     articles,
+    totalResults,
     fetchArticles,
   }
 }
