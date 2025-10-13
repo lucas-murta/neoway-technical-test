@@ -14,17 +14,79 @@ function goTo(path: string) {
 <template>
   <Grid direction="column" gap="1" height="full" padding="none">
     <Paper background="surface-1" padding="2" border-radius="none" height="full">
-      <Grid col="1" gap="1">
-        <Button variant="text" size="medium" full @click="goTo('/')">Home</Button>
-        <Button variant="text" size="medium" full @click="goTo('/business')">Business</Button>
-        <Button variant="text" size="medium" full @click="goTo('/entertainment')"
+      <Grid col="1" gap="1" align-content="start">
+        <Button
+          variant="text"
+          size="medium"
+          full
+          text-align="start"
+          icon-left="house"
+          @click="goTo('/')"
+          >Home</Button
+        >
+        <Button
+          variant="text"
+          size="medium"
+          full
+          text-align="start"
+          icon-left="briefcase"
+          @click="goTo('/business')"
+          >Business</Button
+        >
+        <Button
+          variant="text"
+          size="medium"
+          full
+          text-align="start"
+          icon-left="film"
+          @click="goTo('/entertainment')"
           >Entertainment</Button
         >
-        <Button variant="text" size="medium" full @click="goTo('/general')">General</Button>
-        <Button variant="text" size="medium" full @click="goTo('/health')">Health</Button>
-        <Button variant="text" size="medium" full @click="goTo('/science')">Science</Button>
-        <Button variant="text" size="medium" full @click="goTo('/sports')">Sports</Button>
-        <Button variant="text" size="medium" full @click="goTo('/technology')">Technology</Button>
+        <Button
+          variant="text"
+          size="medium"
+          full
+          text-align="start"
+          icon-left="globe"
+          @click="goTo('/general')"
+          >General</Button
+        >
+        <Button
+          variant="text"
+          size="medium"
+          full
+          text-align="start"
+          icon-left="heart"
+          @click="goTo('/health')"
+          >Health</Button
+        >
+        <Button
+          variant="text"
+          size="medium"
+          full
+          text-align="start"
+          icon-left="flask"
+          @click="goTo('/science')"
+          >Science</Button
+        >
+        <Button
+          variant="text"
+          size="medium"
+          full
+          text-align="start"
+          icon-left="person-running"
+          @click="goTo('/sports')"
+          >Sports</Button
+        >
+        <Button
+          variant="text"
+          size="medium"
+          full
+          text-align="start"
+          icon-left="microchip"
+          @click="goTo('/technology')"
+          >Technology</Button
+        >
       </Grid>
     </Paper>
   </Grid>
