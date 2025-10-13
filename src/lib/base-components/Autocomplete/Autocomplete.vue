@@ -144,7 +144,8 @@ const handleKeyDown = createAutocompleteKeydown({
     background-color: $color-surface-0;
     border: 1px solid $color-border-1;
     border-radius: spacing('1');
-    padding: spacing('1');
+    height: spacing('7');
+    padding: 0 spacing('1');
     position: relative;
   }
 
