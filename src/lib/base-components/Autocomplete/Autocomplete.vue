@@ -161,10 +161,12 @@ const handleKeyDown = createAutocompleteKeydown({
     align-items: center;
     justify-content: center;
     background-color: $color-border-1;
+    flex-shrink: 0;
   }
 
   &__input {
     flex: 1;
+    flex-shrink: 1;
     border: none;
     outline: none;
     background: transparent;
