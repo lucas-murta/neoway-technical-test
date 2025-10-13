@@ -27,4 +27,6 @@ export interface GridProps {
   smMargin?: string
   mdMargin?: string
   lgMargin?: string
+  gridColumn?: string
+  container?: boolean
 }
