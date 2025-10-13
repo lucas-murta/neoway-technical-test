@@ -5,6 +5,7 @@ import Icon from './lib/base-components/Icon/Icon.vue'
 import Grid from './lib/base-components/Grid/Grid.vue'
 import Paper from './lib/base-components/Paper/Paper.vue'
 import Button from './lib/base-components/Button/Button.vue'
+import Autocomplete from './lib/base-components/Autocomplete/Autocomplete.vue'
 const stop = inject<() => void>('stopThemeListener')
 onUnmounted(() => {
   if (typeof stop === 'function') stop()
@@ -13,6 +14,23 @@ onUnmounted(() => {
 
 <template>
   <main style="padding: 16px">
+    <div style="margin-bottom: 24px; max-width: 400px">
+      <Typography
+        tag="h2"
+        variant="heading-3"
+        font-family="heading"
+        font-weight="semibold"
+        size="2xl"
+      >
+        Autocomplete Component
+      </Typography>
+      <Autocomplete
+        label="Search"
+        icon="user"
+        placeholder="Type to filter"
+        :options="['Apple', 'Banana', 'Cherry', 'Grape', 'Orange']"
+      />
+    </div>
     <Typography tag="h1" variant="heading-2" font-family="heading" font-weight="bold" size="3xl">
       Typography Component
     </Typography>
