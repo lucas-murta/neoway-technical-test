@@ -18,6 +18,10 @@ const classes = computed(() => {
   c.push(`button--color-${props.color}`)
   if (props.iconButton) c.push('button--icon-only')
   if (props.full && !props.iconButton) c.push('button--full')
+  if (props.full && props.iconRight && !props.iconButton) c.push('button--full-ir')
+  if (props.full && props.iconLeft && !props.iconButton) c.push('button--full-il')
+  if (props.full && props.iconRight && props.iconLeft && !props.iconButton)
+    c.push('button--full-ir-lr')
   if (props.full && !props.iconButton) c.push(`button--text-${props.textAlign}`)
   if (props.disabled) c.push('is-disabled')
   if (props.className) c.push(props.className)
@@ -64,7 +68,6 @@ const labelSize = computed(() => {
   grid-auto-flow: column;
   align-items: center;
   justify-content: center;
-  grid-template-columns: auto 1fr auto;
   gap: spacing('1');
   border: 1px solid transparent;
   background: transparent;
@@ -73,13 +76,26 @@ const labelSize = computed(() => {
   text-decoration: none;
   outline: none;
   border-radius: spacing('1');
-  width: auto;
+  width: fit-content;
 
   &.button--full {
     width: 100%;
-    .button__content {
-      width: 100%;
-    }
+    grid-template-columns: 1fr;
+  }
+
+  &.button--full-ir {
+    width: 100%;
+    grid-template-columns: 1fr auto;
+  }
+
+  &.button--full-il {
+    width: 100%;
+    grid-template-columns: auto 1fr;
+  }
+
+  &.button--full-ir-lr {
+    width: 100%;
+    grid-template-columns: auto 1fr auto;
   }
 
   &:focus-visible {
@@ -198,19 +214,20 @@ const labelSize = computed(() => {
     border-color: $color-surface-3;
     cursor: not-allowed;
   }
-  &.button--text-start {
+
+  &--text-start {
     .button__content {
       text-align: left;
     }
   }
 
-  &.button--text-center {
+  &--text-center {
     .button__content {
       text-align: center;
     }
   }
 
-  &.button--text-end {
+  &--text-end {
     .button__content {
       text-align: right;
     }
