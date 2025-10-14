@@ -6,8 +6,10 @@ import Header from '@/lib/components/Header/Header.vue'
 import Paper from './lib/base-components/Paper/Paper.vue'
 import Navbar from '@/lib/components/Navbar/Navbar.vue'
 import ToastContainer from '@/lib/components/ToastContainer/ToastContainer.vue'
+import { useBreakpoints } from './composables/useBreakpoints'
 const stop = inject<() => void>('stopThemeListener')
 const router = useRouter()
+const { isDesktop } = useBreakpoints()
 const menuOpen = ref(false)
 function onToggleMenu() {
   menuOpen.value = !menuOpen.value
@@ -38,16 +40,25 @@ onUnmounted(() => {
 <template>
   <Header @menu-click="onToggleMenu" @search-autocomplete="onHeaderSearch" />
   <main class="app-main">
+    <Navbar
+      v-if="!isDesktop && menuOpen"
+      class="app-main-mobile-navbar"
+      @menu-click="onToggleMenu"
+    />
     <Grid :cols="12" gap="2" padding="none" height="full">
       <Grid
-        v-if="menuOpen"
-        :grid-column="menuOpen ? 'span 2' : 'span 0'"
+        v-if="isDesktop && menuOpen"
+        :grid-column="isDesktop && menuOpen ? 'span 2' : 'span 0'"
         padding="9 0 0"
         height="full"
       >
         <Navbar />
       </Grid>
-      <Grid :grid-column="menuOpen ? 'span 10' : 'span 12'" padding="12 0 4" height="full">
+      <Grid
+        :grid-column="isDesktop && menuOpen ? 'span 10' : 'span 12'"
+        padding="12 0 4"
+        height="full"
+      >
         <Grid container width="full" height="full" margin="0 auto" padding="none">
           <Paper padding="2" background="surface-0" border-radius="2">
             <RouterView />
@@ -63,5 +74,13 @@ onUnmounted(() => {
 @use '@/styles/tokens' as *;
 .app-main {
   height: 100%;
+
+  &-mobile-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 90;
+  }
 }
 </style>

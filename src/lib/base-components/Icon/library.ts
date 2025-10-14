@@ -20,6 +20,7 @@ import {
   faExclamationTriangle,
   faCheckCircle,
   faTimesCircle,
+  faTimes,
   faFrown,
   faBookmark as faBookmarkSolid,
 } from '@fortawesome/free-solid-svg-icons'
@@ -50,5 +51,6 @@ library.add(
   faExclamationTriangle,
   faCheckCircle,
   faTimesCircle,
+  faTimes,
   faFrown,
 )
