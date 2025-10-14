@@ -7,6 +7,11 @@ const routes: RouteRecordRaw[] = [
     name: 'home',
     component: () => import('@/pages/Home/index.vue'),
   },
+  {
+    path: '/saved-articles',
+    name: 'saved-articles',
+    component: () => import('@/pages/SavedArticles/index.vue'),
+  },
 ]
 
 CATEGORIES.forEach((category) => {

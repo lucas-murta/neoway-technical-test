@@ -21,6 +21,7 @@ import {
   faCheckCircle,
   faTimesCircle,
   faFrown,
+  faBookmark as faBookmarkSolid,
 } from '@fortawesome/free-solid-svg-icons'
 
 import { faCircle, faBookmark } from '@fortawesome/free-regular-svg-icons'
@@ -44,6 +45,7 @@ library.add(
   faCircleSolid,
   faCircle,
   faBookmark,
+  faBookmarkSolid,
   faInfoCircle,
   faExclamationTriangle,
   faCheckCircle,
