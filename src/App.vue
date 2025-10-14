@@ -5,6 +5,7 @@ import Grid from '@/lib/base-components/Grid/Grid.vue'
 import Header from '@/lib/components/Header/Header.vue'
 import Paper from './lib/base-components/Paper/Paper.vue'
 import Navbar from '@/lib/components/Navbar/Navbar.vue'
+import ToastContainer from '@/lib/components/ToastContainer/ToastContainer.vue'
 const stop = inject<() => void>('stopThemeListener')
 const router = useRouter()
 const menuOpen = ref(false)
@@ -54,6 +55,7 @@ onUnmounted(() => {
       </Grid>
     </Grid>
   </main>
+  <ToastContainer />
 </template>
 
 <style scoped lang="scss">
