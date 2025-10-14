@@ -5,11 +5,13 @@ import Grid from '@/lib/base-components/Grid/Grid.vue'
 import Loading from '@/lib/base-components/Loading/Loading.vue'
 import Card from '@/lib/components/Card/Card.vue'
 import { useNews } from '@/composables/useNews'
+import { useToast } from '@/composables/useToast'
 import Pagination from '@/lib/components/Pagination/Pagination.vue'
 import type { Article } from '@/service/newsapi/types'
 import { openExternalLink } from '@/utils/dom/openExternalLink'
 
 const { loading, error, articles, totalResults, fetchArticles } = useNews()
+const { showError } = useToast()
 const route = useRoute()
 const page = ref(1)
 const pageSize = ref(10)
@@ -17,6 +19,12 @@ const pageSize = ref(10)
 watch([page, pageSize, () => route.query.q], async ([p, ps, q]) => {
   const qStr = typeof q === 'string' ? q : undefined
   await fetchArticles({ page: p, pageSize: ps, q: qStr })
+})
+
+watch(error, (newError) => {
+  if (newError) {
+    showError('Error loading news', newError)
+  }
 })
 
 onMounted(() => {
@@ -38,7 +46,6 @@ function onCardClick(article: Article) {
     <Loading size="lg" />
   </Grid>
   <Grid v-if="!loading" col="1" gap="2" align-content="start">
-    <p v-if="error">Error: {{ error }}</p>
     <p v-if="!loading && !error && typeof route.query.q === 'string' && articles.length === 0">
       No results found
     </p>
