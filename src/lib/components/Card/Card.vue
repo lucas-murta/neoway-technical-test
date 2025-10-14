@@ -6,14 +6,34 @@ import Typography from '@/lib/base-components/Typography/Typography.vue'
 import Grid from '@/lib/base-components/Grid/Grid.vue'
 import Icon from '@/lib/base-components/Icon/Icon.vue'
 import Thumbnail from '@/lib/base-components/Thumbnail/Thumbnail.vue'
+import { useSavedArticlesStore } from '@/stores/savedArticles'
+import { useToast } from '@/composables/useToast'
 
 const props = defineProps<CardProps>()
+const savedArticlesStore = useSavedArticlesStore()
+const { showSuccess } = useToast()
 
 const formattedDate = computed(() => {
   const d = new Date(props.article.publishedAt)
   if (Number.isNaN(d.getTime())) return props.article.publishedAt
   return d.toLocaleDateString()
 })
+
+const isArticleSaved = computed(() => {
+  return savedArticlesStore.isArticleSaved(props.article)
+})
+
+function onSaveToggle(event) {
+  event.stopPropagation()
+
+  const wasSaved = savedArticlesStore.toggleArticle(props.article)
+
+  if (wasSaved) {
+    showSuccess('Article saved successfully!', 'Article saved successfully!')
+  } else {
+    showSuccess('Article removed from saved!', 'Article removed from saved!')
+  }
+}
 </script>
 
 <template>
@@ -42,18 +62,29 @@ const formattedDate = computed(() => {
           </Paper>
         </Grid>
         <Grid col="1" gap="1" align-content="start">
-          <Typography
-            tag="h3"
-            variant="heading-3"
-            font-family="heading"
-            font-weight="bold"
-            size="lg"
-            :aria-label="article.title"
-            :lines="1"
-            class="card__title"
-          >
-            {{ article.title }}
-          </Typography>
+          <Grid :cols="1" gap="1" align-items="start" class="card__header">
+            <Typography
+              tag="h3"
+              variant="heading-3"
+              font-family="heading"
+              font-weight="bold"
+              size="lg"
+              :aria-label="article.title"
+              :lines="1"
+              class="card__title"
+            >
+              {{ article.title }}
+            </Typography>
+            <button
+              type="button"
+              class="card__save-btn"
+              :class="{ 'card__save-btn--saved': isArticleSaved }"
+              :aria-label="isArticleSaved ? 'Remove from saved' : 'Save article'"
+              @click="onSaveToggle"
+            >
+              <Icon :icon="isArticleSaved ? ['fas', 'bookmark'] : ['far', 'bookmark']" size="lg" />
+            </button>
+          </Grid>
           <Typography
             tag="p"
             variant="body-small"
@@ -131,6 +162,42 @@ const formattedDate = computed(() => {
 
   &__description {
     margin: 0;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: spacing('2');
+  }
+
+  &__save-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: spacing('1');
+    border-radius: spacing('1');
+    color: var(--color-content-ghost);
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+
+    &:hover {
+      color: var(--color-content-default);
+      background: var(--color-surface-1);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 2px var(--color-status-focus);
+    }
+
+    &--saved {
+      color: var(--color-status-warning);
+
+      &:hover {
+        color: var(--color-status-warning);
+      }
+    }
   }
 }
 </style>

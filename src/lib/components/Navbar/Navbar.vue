@@ -87,6 +87,15 @@ function goTo(path: string) {
           @click="goTo('/technology')"
           >Technology</Button
         >
+        <Button
+          variant="text"
+          size="medium"
+          full
+          text-align="start"
+          icon-left="bookmark"
+          @click="goTo('/saved-articles')"
+          >Saved Articles</Button
+        >
       </Grid>
     </Paper>
   </Grid>

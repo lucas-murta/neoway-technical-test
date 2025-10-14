@@ -25,6 +25,7 @@ function onHeaderSearch(payload: { value: string }) {
     'science',
     'sports',
     'technology',
+    'saved-articles',
   ])
   const targetName = allowed.has(String(current.name)) ? String(current.name) : 'home'
   router.push({ name: targetName, query: term ? { q: term } : {} })
