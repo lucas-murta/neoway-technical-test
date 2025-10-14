@@ -1,4 +1,5 @@
 # Logs
+.cache/*
 public/*
 logs
 *.log
