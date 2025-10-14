@@ -3,16 +3,31 @@ import Grid from '@/lib/base-components/Grid/Grid.vue'
 import Paper from '@/lib/base-components/Paper/Paper.vue'
 import Button from '@/lib/base-components/Button/Button.vue'
 import { useRouter } from 'vue-router'
+import { NavbarEmits } from './navbar.interface'
 
 const router = useRouter()
+const emit = defineEmits<NavbarEmits>()
 
 function goTo(path: string) {
   router.push(path)
 }
+
+function onMenuClick(link: string) {
+  emit('menu-click')
+  goTo(link)
+}
 </script>
 
 <template>
-  <Grid direction="column" gap="1" height="full" padding="none">
+  <Grid
+    direction="column"
+    gap="1"
+    height="full"
+    padding="7 0 0"
+    sm-padding="7 0 0"
+    md-padding="none"
+    lg-padding="none"
+  >
     <Paper background="surface-1" padding="2" border-radius="none" height="full">
       <Grid col="1" gap="1" align-content="start">
         <Button
@@ -21,7 +36,7 @@ function goTo(path: string) {
           full
           text-align="start"
           icon-left="house"
-          @click="goTo('/')"
+          @click="onMenuClick('/')"
           >Home</Button
         >
         <Button
@@ -30,7 +45,7 @@ function goTo(path: string) {
           full
           text-align="start"
           icon-left="briefcase"
-          @click="goTo('/business')"
+          @click="onMenuClick('/business')"
           >Business</Button
         >
         <Button
@@ -39,7 +54,7 @@ function goTo(path: string) {
           full
           text-align="start"
           icon-left="film"
-          @click="goTo('/entertainment')"
+          @click="onMenuClick('/entertainment')"
           >Entertainment</Button
         >
         <Button
@@ -48,7 +63,7 @@ function goTo(path: string) {
           full
           text-align="start"
           icon-left="globe"
-          @click="goTo('/general')"
+          @click="onMenuClick('/general')"
           >General</Button
         >
         <Button
@@ -57,7 +72,7 @@ function goTo(path: string) {
           full
           text-align="start"
           icon-left="heart"
-          @click="goTo('/health')"
+          @click="onMenuClick('/health')"
           >Health</Button
         >
         <Button
@@ -66,7 +81,7 @@ function goTo(path: string) {
           full
           text-align="start"
           icon-left="flask"
-          @click="goTo('/science')"
+          @click="onMenuClick('/science')"
           >Science</Button
         >
         <Button
@@ -75,7 +90,7 @@ function goTo(path: string) {
           full
           text-align="start"
           icon-left="person-running"
-          @click="goTo('/sports')"
+          @click="onMenuClick('/sports')"
           >Sports</Button
         >
         <Button
@@ -84,7 +99,7 @@ function goTo(path: string) {
           full
           text-align="start"
           icon-left="microchip"
-          @click="goTo('/technology')"
+          @click="onMenuClick('/technology')"
           >Technology</Button
         >
         <Button
@@ -93,7 +108,7 @@ function goTo(path: string) {
           full
           text-align="start"
           icon-left="bookmark"
-          @click="goTo('/saved-articles')"
+          @click="onMenuClick('/saved-articles')"
           >Saved Articles</Button
         >
       </Grid>
