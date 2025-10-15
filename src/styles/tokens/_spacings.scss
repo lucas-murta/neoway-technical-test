@@ -120,7 +120,7 @@ $spacings: (
 }
 
 @function spacing($key) {
-  @if map-has-key($spacings, $key) {
+  @if map.has-key($spacings, $key) {
     @return map.get($spacings, $key);
   }
 
