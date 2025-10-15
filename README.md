@@ -62,18 +62,12 @@ cd neoway-technical-test
 npm install
 ```
 
-3. **Configure as variáveis de ambiente:**
-```bash
-# Crie um arquivo .env na raiz do projeto
-VITE_NEWS_API_KEY=sua_chave_da_newsapi
-```
-
-4. **Execute em modo de desenvolvimento:**
+3. **Execute em modo de desenvolvimento:**
 ```bash
 npm run dev
 ```
 
-5. **Acesse a aplicação:**
+4. **Acesse a aplicação:**
 Abra [http://localhost:5173](http://localhost:5173) no seu navegador
 
 ### Outros Comandos Disponíveis
@@ -110,22 +104,7 @@ A aplicação foi desenvolvida seguindo as melhores práticas de acessibilidade:
 - **Roles semânticos**: Uso adequado de elementos HTML semânticos
 - **Descrições acessíveis**: Labels descritivos para ações como "Save article" e "Remove from saved"
 
-### Exemplos de Implementação:
-```vue
-<!-- Card Component -->
-<article :aria-label="article.title">
-  <button :aria-label="isArticleSaved ? 'Remove from saved' : 'Save article'">
-    <!-- Conteúdo do botão -->
-  </button>
-</article>
 
-<!-- Autocomplete Component -->
-<input 
-  @keydown="handleKeyDown"
-  @focus="onFocus"
-  aria-label="Search articles"
-/>
-```
 
 ## 🧪 Cobertura de Testes
 
