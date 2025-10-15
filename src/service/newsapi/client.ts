@@ -7,14 +7,13 @@ export class NewsApiClient {
 
   constructor(config: NewsApiConfig) {
     this.apiKey = config.apiKey
-    // Default to proxy base URL to avoid exposing the API key client-side
-    this.baseUrl = config.baseUrl ?? '/api/news'
+    this.baseUrl = config.baseUrl ?? 'https://newsapi.org/v2'
   }
 
   private headers(): HeadersInit {
-    // When using the proxy, do not send the API key from the client
-    if (this.baseUrl.startsWith('/api/news')) return {}
-    return { 'X-Api-Key': this.apiKey }
+    return {
+      'X-Api-Key': this.apiKey,
+    }
   }
 
   async topHeadlines(
