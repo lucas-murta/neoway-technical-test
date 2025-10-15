@@ -51,23 +51,17 @@ src/
 
 ### Instalação e Execução
 
-1. **Clone o repositório:**
-```bash
-git clone <repository-url>
-cd neoway-technical-test
-```
-
-2. **Instale as dependências:**
+1. **Instale as dependências:**
 ```bash
 npm install
 ```
 
-3. **Execute em modo de desenvolvimento:**
+2. **Execute em modo de desenvolvimento:**
 ```bash
 npm run dev
 ```
 
-4. **Acesse a aplicação:**
+3. **Acesse a aplicação:**
 Abra [http://localhost:5173](http://localhost:5173) no seu navegador
 
 ### Outros Comandos Disponíveis
@@ -95,14 +89,11 @@ A aplicação foi desenvolvida seguindo as melhores práticas de acessibilidade:
 
 ### Navegação por Teclado
 - **Tab/Shift+Tab**: Navegação entre elementos interativos
-- **Enter/Space**: Ativação de botões e links
 - **Setas**: Navegação em componentes como autocomplete
 - **Escape**: Fechamento de modais e dropdowns
 
 ### ARIA Labels e Semântica
 - **aria-label**: Implementado em componentes como Card, Button e Typography
-- **Roles semânticos**: Uso adequado de elementos HTML semânticos
-- **Descrições acessíveis**: Labels descritivos para ações como "Save article" e "Remove from saved"
 
 
 
@@ -166,7 +157,7 @@ npm run dev
 O projeto implementa um design system consistente com:
 - **Tokens de design** para cores, espaçamentos e tipografia
 - **Componentes reutilizáveis** com props tipadas
-- **Temas** claro e escuro
+- **Tema** claro e escuro automático
 - **Responsividade** para diferentes dispositivos
 
 ---
