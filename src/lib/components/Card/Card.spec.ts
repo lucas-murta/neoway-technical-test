@@ -1,47 +1,51 @@
 import { describe, it, expect } from 'vitest'
-import { createApp } from 'vue'
+import { mount } from '@vue/test-utils'
+import { createPinia } from 'pinia'
 import Card from './Card.vue'
+import type { Article } from '@/service/newsapi/types'
+import '@/lib/base-components/Icon/library'
 
-function mountCard(article: Record<string, any>) {
-  const container = document.createElement('div')
-  document.body.appendChild(container)
-  const app = createApp(Card, { article })
-  app.mount(container)
-  const el = container.firstElementChild as HTMLElement | null
-  return { app, container, el }
+function createWrapper(article: Article) {
+  const pinia = createPinia()
+  return mount(Card, {
+    props: { article },
+    global: {
+      plugins: [pinia],
+    },
+  })
 }
 
 describe('Card formattedDate', () => {
   it('formats valid publishedAt into locale date', () => {
     const publishedAt = '2020-01-15T12:00:00Z'
     const expectedDate = new Date(publishedAt).toLocaleDateString()
-    const { app, container, el } = mountCard({
+    const wrapper = createWrapper({
       title: 'Sample Title',
-      source: { name: 'Source' },
+      source: { id: null, name: 'Source' },
       author: 'Author',
       description: 'Desc',
-      publishedAt,
+      url: 'https://example.com/article',
       urlToImage: '',
+      publishedAt,
+      content: 'Sample content',
     })
-    const meta = el?.querySelector('.card__meta')
-    expect(meta?.textContent || '').toContain(expectedDate)
-    app.unmount()
-    document.body.removeChild(container)
+    const meta = wrapper.find('.card__meta')
+    expect(meta.text()).toContain(expectedDate)
   })
 
   it('returns original string for invalid date', () => {
     const invalidPublishedAt = 'not-a-date'
-    const { app, container, el } = mountCard({
+    const wrapper = createWrapper({
       title: 'Another Title',
-      source: { name: 'Another Source' },
+      source: { id: null, name: 'Another Source' },
       author: 'Author',
       description: 'Desc',
-      publishedAt: invalidPublishedAt,
+      url: 'https://example.com/another-article',
       urlToImage: '',
+      publishedAt: invalidPublishedAt,
+      content: 'Another sample content',
     })
-    const meta = el?.querySelector('.card__meta')
-    expect(meta?.textContent || '').toContain(invalidPublishedAt)
-    app.unmount()
-    document.body.removeChild(container)
+    const meta = wrapper.find('.card__meta')
+    expect(meta.text()).toContain(invalidPublishedAt)
   })
 })
