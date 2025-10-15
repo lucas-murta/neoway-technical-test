@@ -1,0 +1,14 @@
+
+# Dependencies and build outputs
+node_modules
+dist
+build
+coverage
+.cache
+
+# Configuration files
+*.config.js
+*.config.ts
+
+# Environment files
+.env
